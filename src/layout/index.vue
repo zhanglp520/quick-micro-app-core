@@ -1,77 +1,81 @@
 <script setup lang="ts">
-import { computed, watch, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { Close } from '@element-plus/icons-vue'
-import { useRoute, useRouter } from 'vue-router'
-import { useAppStore } from '@/store/modules/app'
-import { useMenuStore } from '@/store/modules/menu'
-import { useTabStore } from '@/store/modules/tab'
-import { Tab } from '@/types/tab'
-import config from '@/config/index'
-import AiniTop from './components/AiniTop/index.vue'
-import AiniSidebar from './components/AiniSidebar/index.vue'
+import { computed, watch, ref } from "vue";
+import { useI18n } from "vue-i18n";
+import { Close } from "@element-plus/icons-vue";
+import { useRoute, useRouter } from "vue-router";
+import { useAppStore } from "@/store/modules/app";
+import { useMenuStore } from "@/store/modules/menu";
+import { useTabStore } from "@/store/modules/tab";
+import { Tab } from "@/types/tab";
+import config from "@/config/index";
+import AiniTop from "./components/AiniTop/index.vue";
+import AiniSidebar from "./components/AiniSidebar/index.vue";
 import { TabPaneName } from "element-plus";
 
-const route = useRoute()
-const router = useRouter()
-const appStore = useAppStore()
-const menuStore = useMenuStore()
+const route = useRoute();
+const router = useRouter();
+const appStore = useAppStore();
+const menuStore = useMenuStore();
 
 /**
  * 国际化
  */
-const { t } = useI18n()
-console.log('i18n', t('title'))
+const { t } = useI18n();
+console.log("i18n", t("title"));
 
-const isCollapse = computed(() => appStore.getCollapse)
+const isCollapse = computed(() => appStore.getCollapse);
 /**
  * 选项卡
  */
-const cache = ref(config.tabCache)
-const tabStore = useTabStore()
-const editableTabsValue = ref('home')
-const editableTabs = ref<Array<Tab>>([])
-const activeTab = computed(() => tabStore.getActiveTab)
-const tabList = computed(() => tabStore.getTabList)
-const handleTabsEdit = (paneName: TabPaneName|undefined, action: 'remove' | 'add'): void => {
-  const targetName=paneName?.toString()
-  if(action==='remove'){
-    if(targetName){
-      tabStore.deleteTab(targetName)
+const cache = ref(config.tabCache);
+const tabStore = useTabStore();
+const editableTabsValue = ref("home");
+const editableTabs = ref<Array<Tab>>([]);
+const activeTab = computed(() => tabStore.getActiveTab);
+const tabList = computed(() => tabStore.getTabList);
+const handleTabsEdit = (
+  paneName: TabPaneName | undefined,
+  action: "remove" | "add"
+): void => {
+  const targetName = paneName?.toString();
+  if (action === "remove") {
+    if (targetName) {
+      tabStore.deleteTab(targetName);
     }
   }
-}
-const handleClick = (name:TabPaneName) => {
-  const activeName=name.toString()
-  const index = tabList.value.findIndex((x) => x.id === activeName)
+};
+const handleClick = (name: TabPaneName) => {
+  const activeName = name.toString();
+  const index = tabList.value.findIndex((x) => x.id === activeName);
   if (index !== -1) {
-    tabStore.setActiveTab(tabList.value[index])
-    menuStore.setActiveMenuId(activeName)
-    editableTabsValue.value = activeName
+    tabStore.setActiveTab(tabList.value[index]);
+    menuStore.setActiveMenuId(activeName);
+    debugger;
+    editableTabsValue.value = activeName;
   }
-}
+};
 if (activeTab.value.id) {
-  handleClick(activeTab.value.id)
+  handleClick(activeTab.value.id);
 }
 const closeAll = () => {
-  tabStore.clear()
-  menuStore.clear()
-  editableTabsValue.value = 'home'
-}
+  tabStore.clear();
+  menuStore.clear();
+  editableTabsValue.value = "home";
+};
 watch(activeTab, (val) => {
   if (val) {
-    const { id, path } = val
+    const { id, path } = val;
     if (id) {
-      editableTabsValue.value = id
+      editableTabsValue.value = id;
     }
     if (path) {
-      router.push(path)
+      router.push(path);
     }
   }
-})
+});
 watch(tabList, (val) => {
-  editableTabs.value = val
-})
+  editableTabs.value = val;
+});
 </script>
 
 <template>
@@ -118,14 +122,18 @@ watch(tabList, (val) => {
                 :label="item.name"
                 :name="item.id"
               >
+                <template v-if="editableTabsValue === item.id">
+                  <router-view v-if="cache" v-slot="{ Component }">
+                    <keep-alive>
+                      <component :is="Component" />
+                    </keep-alive>
+                  </router-view>
+                  <router-view v-else v-slot="{ Component }">
+                    <component :is="Component" />
+                  </router-view>
+                </template>
               </el-tab-pane>
             </el-tabs>
-            <router-view v-if="cache" v-slot="{ Component }">
-              <keep-alive>
-                <component :is="Component" />
-              </keep-alive>
-            </router-view>
-            <router-view v-else></router-view>
           </el-card>
         </el-main>
         <!-- <el-footer>

@@ -2,6 +2,8 @@ export {};
 
 declare global {
   interface Window {
-    eventCenterForApp_Tools: any;
+    eventCenterForAppDemo: any;
+    eventCenterForAppTools: any;
+    eventCenterForAppSource: any;
   }
 }
