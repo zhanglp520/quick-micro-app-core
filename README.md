@@ -42,7 +42,8 @@ https://gitee.com/zhanglp520/quick-vue3-admin.git
 
 ## 预览
 
-- [quick-micro-app](https://microApp.quick.ainiteam.com/) - 框架演示 微前端 1.0 版本
+- [quick-micro-app-tools](https://tools.quick.ainiteam.com/) - 微前端的开发者工具子应用 1.0 版本
+- [quick-micro-app-core](https://core.quick.ainiteam.com/) - 微前端的基座端 1.0 版本
 - [quick-vue3-admin](https://quick.ainiteam.com/) - 框架演示 2.0 版本
 - [quick-vue3-admin](https://v1.quick.ainiteam.com/) - 框架演示 1.0 版本
 
@@ -50,20 +51,19 @@ https://gitee.com/zhanglp520/quick-vue3-admin.git
 
 ## 接口文档
 
-- [quick 接口文档](https://console-docs.apipost.cn/preview/52de13c4d013470f/e5aa6f10d52601f7) - quick 接口文档 微服务 1.0 版本
+- [quick 接口文档](https://console-docs.apipost.cn/preview/622b23fa1457d3d2/3f7a6fac371a04d1) - quick 接口文档 3.0 版本-微服务
 - [quick 接口文档](https://console-docs.apipost.cn/preview/52de13c4d013470f/e5aa6f10d52601f7) - quick 接口文档 2.0 版本
-- [quick 接口文档](https://console-docs.apipost.cn/preview/0e11a2eb3c3883a7/4fff7a394c074ac7) - quick 接口文档
+- [quick 接口文档](https://console-docs.apipost.cn/preview/0e11a2eb3c3883a7/4fff7a394c074ac7) - quick 接口文档 1.0 版本
 
 ## 安装使用
 
 - 克隆项目
 
 ```bash
-码云：git clone https://gitee.com/zhanglp520/quick-vue3-admin.git
+码云：git clone https://gitee.com/zhanglp520/quick-micro-app-core.git
 
-github： git clone https://github.com/zhanglp520/quick-vue3-admin.git
+github： git clone https://github.com/zhanglp520/quick-micro-app-core.git
 
-gitlab git clone  https://repository.ainiteam.com/zhanglp520/quick-vue3-admin.git
 ```
 
 - 切换淘宝镜像
@@ -127,11 +127,12 @@ pnpm run preview
 
 ## 后端接口
 
-- 官方提供后端接口项目 nestjs 微服务 版本：https://gitee.com/zhanglp520/quick-node-Nestjs.git 接口 v3 版本
+- 官方提供后端接口项目 nestjs 微服务 版本：
+  gitlab git clone https://repository.ainiteam.com/zhanglp520/quick-node-Nestjs-microservices.git 接口 v3 版本
 
-- 官方提供后端接口项目 nestjs 版本：https://gitee.com/zhanglp520/quick-node-Nestjs.git 接口 v2 版本
+- 官方提供后端接口项目 nestjs 版本：gitlab git clone https://repository.ainiteam.com/zhanglp520//quick-node-Nestjs.git 接口 v2 版本
 
-- 官方提供后端接口项目 express 版本：https://gitee.com/zhanglp520/quick-node-express.git 接口 v1 版本
+- 官方提供后端接口项目 express 版本：gitlab git clone https://repository.ainiteam.com/zhanglp520//quick-node-express.git 接口 v1 版本
 
 ## 寻求帮助
 
